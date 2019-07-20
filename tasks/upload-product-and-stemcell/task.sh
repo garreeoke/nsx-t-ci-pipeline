@@ -41,10 +41,15 @@ if [ -e "./pivnet-product/metadata.json" ]; then
 fi
 
 tile_metadata=$(unzip -l pivnet-product/*.pivotal | grep "metadata" | grep "ml$" | awk '{print $NF}')
-STEMCELL_VERSION_FROM_TILE=$(unzip -p pivnet-product/*.pivotal $tile_metadata | grep -A5 "stemcell_criteria:"  \
-                                  | grep "version:" | grep -Ei "[0-9]+{2}" | awk '{print $NF}' | sed "s/'//g;s/\"//g" )
-STEMCELL_OS_FROM_TILE=$(unzip -p pivnet-product/*.pivotal $tile_metadata | grep -A5 "stemcell_criteria:"  \
+if [ "$STEMCELL_VERSION_FROM_TILE" == ""]; then
+	STEMCELL_VERSION_FROM_TILE=$(unzip -p pivnet-product/*.pivotal $tile_metadata | grep -A5 "stemcell_criteria:"  \
+                                  | grep "version:" | grep -Ei "[-+]?[0-9]*\.?[0-9]*" | awk '{print $NF}' | sed "s/'//g;s/\"//g" )
+fi
+
+if [ "$STEMCELL_OS_FROM_TILE" == ""]; then
+	STEMCELL_OS_FROM_TILE=$(unzip -p pivnet-product/*.pivotal $tile_metadata | grep -A5 "stemcell_criteria:"  \
                                   | grep "os:" | awk '{print $NF}' | sed "s/'//g;s/\"//g" )
+fi
 
 if [ "$STEMCELL_OS_FROM_TILE" == "" -o "$STEMCELL_VERSION_FROM_TILE" == "" ]; then
   echo "No stemcell dependency declared or no version specified in tile, skipping stemcell upload!"
