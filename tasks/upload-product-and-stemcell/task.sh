@@ -1,5 +1,6 @@
 #!/bin/bash -eu
 
+echo "Hello"
 # Should the slug contain more than one product, pick only the first.
 FILE_PATH=`find ./pivnet-product -name *.pivotal | sort | head -1`
 om-linux -t https://$OPSMAN_DOMAIN_OR_IP_ADDRESS \
