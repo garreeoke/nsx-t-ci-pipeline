@@ -23,6 +23,8 @@ fi
 
 STEMCELL_VERSION_FROM_PRODUCT_METADATA=""
 if [ -e "./pivnet-product/metadata.json" ]; then
+  echo "metadata file found"
+  cat ./pivnet-product/metadata.json
   STEMCELL_VERSION_FROM_PRODUCT_METADATA=$(
     cat ./pivnet-product/metadata.json |
     jq --raw-output \
