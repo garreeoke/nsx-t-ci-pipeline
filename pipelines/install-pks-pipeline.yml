@@ -194,8 +194,8 @@ resources:
 - name: nsx-t-ci-pipeline
   type: git
   source:
-    uri: https://github.com/nvpnathan/nsx-t-ci-pipeline.git
-    branch: opsman26
+    uri: https://github.com/garreeoke/nsx-t-ci-pipeline.git
+    branch: stemcell
 
 - name: pcf-ops-manager
   type: pivnet
