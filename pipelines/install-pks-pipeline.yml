@@ -1,4 +1,6 @@
 ops_dir_config_params: &ops-dir-config-params
+  STEMCELL_OS_FROM_TILE: ((pks_stemcell_os))
+  STEMCELL_VERSION_FROM_TILE: ((pks_stemcell_version))
   OPSMAN_DOMAIN_OR_IP_ADDRESS: ((opsman_domain_or_ip_address))
   OPSMAN_USERNAME: ((opsman_admin_username))
   OPSMAN_PASSWORD: ((opsman_admin_password))
@@ -51,8 +53,6 @@ pks_config_params: &pks-config-params
   OPSMAN_DOMAIN_OR_IP_ADDRESS: ((opsman_domain_or_ip_address))
   OPSMAN_USERNAME: ((opsman_admin_username))
   OPSMAN_PASSWORD: ((opsman_admin_password))
-  STEMCELL_OS_FROM_TILE: ((pks_stemcell_os))
-  STEMCELL_VERSION_FROM_TILE: ((pks_stemcell_version))
   PKS_SINGLETON_JOB_AZ: ((pks_tile_singleton_job_az))
   PKS_NW_AZS: ((pks_tile_nw_azs))
   PKS_DEPLOYMENT_NETWORK_NAME: ((pks_tile_deployment_network_name))
