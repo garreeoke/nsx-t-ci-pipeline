@@ -19,6 +19,7 @@ function upload_stemcells() (
           curl --silent --path "/api/v0/diagnostic_report"
       )
 
+      echo "blarg1"
       stemcell=$(
         echo $diagnostic_report |
         jq \
@@ -26,6 +27,7 @@ function upload_stemcells() (
           --arg glob "$IAAS" \
         '.stemcells[] | select(contains($version) and contains($glob))'
       )
+      echo "blarg2"
 
       if [[ -z "$stemcell" ]]; then
         echo "Downloading stemcell $stemcell_version_reqd"

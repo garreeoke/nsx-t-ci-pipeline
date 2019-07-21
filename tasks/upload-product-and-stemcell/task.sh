@@ -1,6 +1,5 @@
 #!/bin/bash -eu
 
-echo "Hello"
 # Should the slug contain more than one product, pick only the first.
 FILE_PATH=`find ./pivnet-product -name *.pivotal | sort | head -1`
 om-linux -t https://$OPSMAN_DOMAIN_OR_IP_ADDRESS \
@@ -23,8 +22,6 @@ fi
 
 STEMCELL_VERSION_FROM_PRODUCT_METADATA=""
 if [ -e "./pivnet-product/metadata.json" ]; then
-  echo "metadata file found"
-  cat ./pivnet-product/metadata.json
   STEMCELL_VERSION_FROM_PRODUCT_METADATA=$(
     cat ./pivnet-product/metadata.json |
     jq --raw-output \
@@ -60,5 +57,5 @@ if [ "$STEMCELL_OS_FROM_TILE" == "" -o "$STEMCELL_VERSION_FROM_TILE" == "" ]; th
 fi
 
 source nsx-t-ci-pipeline/functions/upload_stemcell.sh
-echo "No cached stemcell; Will download and then upload stemcell: $SC_FILE_PATH to Ops Mgr"
+echo "No cached stemcell; Will download and then upload stemcell: $STEMCELL_VERSION_FROM_TILE to Ops Mgr"
 upload_stemcells "$STEMCELL_OS_FROM_TILE" "$STEMCELL_VERSION_FROM_TILE $STEMCELL_VERSION_FROM_PRODUCT_METADATA"

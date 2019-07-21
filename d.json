@@ -1,0 +1,570 @@
+{
+	"Release": {
+		"ID": 386533,
+		"Version": "1.4.1",
+		"ReleaseType": "Maintenance Release",
+		"EULASlug": "pivotal-container-service-eula",
+		"ReleaseDate": "2019-06-20",
+		"Description": "This release includes the following along with other enhancements that can be found in the release notes:\n\n- Includes NCP 2.4.1 and support for NSX-T 2.4.1 (Must use the Advanced Networking and Security tab for all PKS objects).\n- Support for provisioning an NSX-T Load Balancer in front of NSX Management Cluster nodes.\n- Ability to tune NCP Rate Limits.\n- Configurable Kubernetes Service Network CIDR Range.\n- Configurable Node IP Block.\n- Improved functionality for the /v1beta1/cluster API endpoint to allow users to list and resize clusters that have compute profiles associated with them.\n\n\n",
+		"ReleaseNotesURL": "https://docs.pivotal.io/runtimes/pks/1-4/release-notes.html",
+		"Availability": "All Users",
+		"UserGroupIDs": null,
+		"Controlled": false,
+		"ECCN": "5D002c.1 ",
+		"LicenseException": "ENC",
+		"EndOfSupportDate": "2020-01-31",
+		"EndOfGuidanceDate": "",
+		"EndOfAvailabilityDate": "",
+		"ProductFiles": [{
+			"ID": 411638
+		}, {
+			"ID": 411568
+		}, {
+			"ID": 400596
+		}]
+	},
+	"ProductFiles": [{
+		"File": "PKS OSL 1.4.1 Part 2",
+		"Description": "",
+		"UploadAs": "",
+		"AWSObjectKey": "product-files/pivotal-container-service/open_source_licenses_VMware_Enterprise_PKS_1.4.1_GA.txt",
+		"FileType": "Open Source License",
+		"FileVersion": "1.4.1",
+		"SHA256": "",
+		"MD5": "",
+		"ID": 411638,
+		"Version": "",
+		"DocsURL": "",
+		"SystemRequirements": null,
+		"Platforms": null,
+		"IncludedFiles": null
+	}, {
+		"File": "PKS OSL 1.4.1 Part 1",
+		"Description": "",
+		"UploadAs": "",
+		"AWSObjectKey": "product-files/pivotal-container-service/open_source_license_pivotal-container-service-1.4.1-build.4-1a54b8f-1561040417.txt",
+		"FileType": "Open Source License",
+		"FileVersion": "1.4.1",
+		"SHA256": "",
+		"MD5": "",
+		"ID": 411568,
+		"Version": "",
+		"DocsURL": "",
+		"SystemRequirements": null,
+		"Platforms": null,
+		"IncludedFiles": null
+	}, {
+		"File": "Pivotal Container Service",
+		"Description": "",
+		"UploadAs": "",
+		"AWSObjectKey": "product-files/pivotal-container-service/pivotal-container-service-1.4.1-build.4.pivotal",
+		"FileType": "Software",
+		"FileVersion": "1.4.1-build.4",
+		"SHA256": "12561f53ad585bfa65537393c187806fe83bcd3d802b8663f28c013e91b3f611",
+		"MD5": "",
+		"ID": 400596,
+		"Version": "",
+		"DocsURL": "",
+		"SystemRequirements": null,
+		"Platforms": null,
+		"IncludedFiles": null
+	}, {
+		"File": "PKS CLI - Mac",
+		"Description": "",
+		"UploadAs": "",
+		"AWSObjectKey": "product-files/pivotal-container-service/pks-darwin-amd64-1.4.0-build.230",
+		"FileType": "Software",
+		"FileVersion": "1.4.1-build.4",
+		"SHA256": "facef3fe32ba2ec6495b92f1a458ddca8a7e7a7ec760de4f83edfc385b645914",
+		"MD5": "",
+		"ID": 400600,
+		"Version": "",
+		"DocsURL": "",
+		"SystemRequirements": null,
+		"Platforms": null,
+		"IncludedFiles": null
+	}, {
+		"File": "PKS CLI - Linux",
+		"Description": "",
+		"UploadAs": "",
+		"AWSObjectKey": "product-files/pivotal-container-service/pks-linux-amd64-1.4.0-build.230",
+		"FileType": "Software",
+		"FileVersion": "1.4.1-build.4",
+		"SHA256": "606e41988b2633d3e6f21903fe8cd5ec19cb76d90ebd067a059d20864cb71128",
+		"MD5": "",
+		"ID": 400601,
+		"Version": "",
+		"DocsURL": "",
+		"SystemRequirements": null,
+		"Platforms": null,
+		"IncludedFiles": null
+	}, {
+		"File": "PKS CLI - Windows",
+		"Description": "",
+		"UploadAs": "",
+		"AWSObjectKey": "product-files/pivotal-container-service/pks-windows-amd64-1.4.0-build.230.exe",
+		"FileType": "Software",
+		"FileVersion": "1.4.1-build.4",
+		"SHA256": "581ffafb0a720f76420c38ef1dcbbb60d495635928e973e2b6f45fcbace6a15a",
+		"MD5": "",
+		"ID": 400602,
+		"Version": "",
+		"DocsURL": "",
+		"SystemRequirements": null,
+		"Platforms": null,
+		"IncludedFiles": null
+	}, {
+		"File": "Kubectl 1.13.5 - Mac",
+		"Description": "",
+		"UploadAs": "",
+		"AWSObjectKey": "product-files/pivotal-container-service/kubectl-darwin-amd64-1.13.5",
+		"FileType": "Software",
+		"FileVersion": "1.4.0-build.16",
+		"SHA256": "b5980f5a719166ef414455b7f8e9462a3a81c72ef59018cdfca00438af7f3378",
+		"MD5": "",
+		"ID": 345485,
+		"Version": "",
+		"DocsURL": "",
+		"SystemRequirements": null,
+		"Platforms": null,
+		"IncludedFiles": null
+	}, {
+		"File": "Kubectl 1.13.5 - Linux",
+		"Description": "",
+		"UploadAs": "",
+		"AWSObjectKey": "product-files/pivotal-container-service/kubectl-linux-amd64-1.13.5",
+		"FileType": "Software",
+		"FileVersion": "1.4.0-build.16",
+		"SHA256": "3b0ddcde72fd6ec30675f2d0500b3aff43a0bfd580602bb1c5c75c4072242f35",
+		"MD5": "",
+		"ID": 345486,
+		"Version": "",
+		"DocsURL": "",
+		"SystemRequirements": null,
+		"Platforms": null,
+		"IncludedFiles": null
+	}, {
+		"File": "Kubectl 1.13.5 - Windows",
+		"Description": "",
+		"UploadAs": "",
+		"AWSObjectKey": "product-files/pivotal-container-service/kubectl-windows-amd64-1.13.5.exe",
+		"FileType": "Software",
+		"FileVersion": "1.4.0-build.16",
+		"SHA256": "c998b53c15004651691bd04d621f2800e6d329299556f1817c505040288382fc",
+		"MD5": "",
+		"ID": 345488,
+		"Version": "",
+		"DocsURL": "",
+		"SystemRequirements": null,
+		"Platforms": null,
+		"IncludedFiles": null
+	}],
+	"DependencySpecifiers": [{
+		"ID": 107137,
+		"Specifier": "~\u003e2.4.2",
+		"ProductSlug": "ops-manager"
+	}, {
+		"ID": 107138,
+		"Specifier": "2.5.*",
+		"ProductSlug": "ops-manager"
+	}, {
+		"ID": 107139,
+		"Specifier": "2.6.*",
+		"ProductSlug": "ops-manager"
+	}, {
+		"ID": 107140,
+		"Specifier": "250.25",
+		"ProductSlug": "stemcells-ubuntu-xenial"
+	}],
+	"UpgradePathSpecifiers": [{
+		"ID": 117666,
+		"Specifier": "~\u003e1.3.2"
+	}, {
+		"ID": 117667,
+		"Specifier": "1.4.0"
+	}],
+	"FileGroups": [{
+		"ID": 1830,
+		"Name": "PKS CLI - v1.4.1",
+		"ProductFiles": [{
+			"ID": 400600
+		}, {
+			"ID": 400601
+		}, {
+			"ID": 400602
+		}]
+	}, {
+		"ID": 1831,
+		"Name": "Kubectl CLIs - v1.4.1",
+		"ProductFiles": [{
+			"ID": 345485
+		}, {
+			"ID": 345486
+		}, {
+			"ID": 345488
+		}]
+	}],
+	"Dependencies": [{
+		"Release": {
+			"ID": 412396,
+			"Version": "2.4.16",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 401099,
+			"Version": "2.4.15",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 397489,
+			"Version": "2.4.14",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 382048,
+			"Version": "2.4.13",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 380078,
+			"Version": "2.4.12",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 371333,
+			"Version": "2.4.11",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 364905,
+			"Version": "2.4.10",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 350170,
+			"Version": "2.4.9",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 339706,
+			"Version": "2.4.8",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 331443,
+			"Version": "2.4.7",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 322166,
+			"Version": "2.4.6",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 315717,
+			"Version": "2.4.5",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 300953,
+			"Version": "2.4.4",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 290118,
+			"Version": "2.4.3",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 281682,
+			"Version": "2.4.2",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 417848,
+			"Version": "2.5.11",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 412375,
+			"Version": "2.5.10",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 409652,
+			"Version": "2.5.9",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 401186,
+			"Version": "2.5.8",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 397521,
+			"Version": "2.5.7",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 381968,
+			"Version": "2.5.6",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 380082,
+			"Version": "2.5.5",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 371351,
+			"Version": "2.5.4",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 368777,
+			"Version": "2.5.3",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 350168,
+			"Version": "2.5.2",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 339245,
+			"Version": "2.5.1",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 334517,
+			"Version": "2.5.0",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 418361,
+			"Version": "2.6.5",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 412373,
+			"Version": "2.6.4",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 407366,
+			"Version": "2.6.3",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 405010,
+			"Version": "2.6.2",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 401105,
+			"Version": "2.6.1",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 380097,
+			"Version": "2.6.0",
+			"Product": {
+				"ID": 78,
+				"Slug": "ops-manager",
+				"Name": "Pivotal Cloud Foundry Operations Manager"
+			}
+		}
+	}, {
+		"Release": {
+			"ID": 331971,
+			"Version": "250.25",
+			"Product": {
+				"ID": 233,
+				"Slug": "stemcells-ubuntu-xenial",
+				"Name": "Stemcells for PCF (Ubuntu Xenial)"
+			}
+		}
+	}],
+	"UpgradePaths": [{
+		"ID": 384407,
+		"Version": "1.3.7"
+	}, {
+		"ID": 339650,
+		"Version": "1.3.6"
+	}, {
+		"ID": 333650,
+		"Version": "1.3.5"
+	}, {
+		"ID": 322092,
+		"Version": "1.3.4"
+	}, {
+		"ID": 309133,
+		"Version": "1.3.3"
+	}, {
+		"ID": 302001,
+		"Version": "1.3.2"
+	}, {
+		"ID": 354903,
+		"Version": "1.4.0"
+	}]
+}
