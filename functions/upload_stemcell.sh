@@ -30,6 +30,8 @@ function upload_stemcells() (
           --arg glob "$IAAS" \
         '.stemcells[]? | select(contains($version) and contains($glob))'
       )
+      
+      echo "Stemcall: $stemcell"
 
       if [[ -z "$stemcell" ]]; then
         echo "Downloading stemcell $stemcell_version_reqd"
