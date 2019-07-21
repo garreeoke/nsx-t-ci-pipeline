@@ -10,7 +10,6 @@ function upload_stemcells() (
   do
 
     if [ -n "$stemcell_version_reqd" ]; then
-      echo "blarg1"
       diagnostic_report=$(
         om-linux \
           --target https://$OPSMAN_DOMAIN_OR_IP_ADDRESS \
@@ -19,8 +18,11 @@ function upload_stemcells() (
           --skip-ssl-validation \
           curl --silent --path "/api/v0/diagnostic_report"
       )
+      
+      echo "Running diag report from OpsMan"
       echo $diagnostic_report
-      echo "blarg2"
+
+      # Made this irrelevant for the time being as diagnostic report is not returning stemcell for pks?
       stemcell=$(
         echo $diagnostic_report |
         jq \
@@ -28,7 +30,6 @@ function upload_stemcells() (
           --arg glob "$IAAS" \
         '.stemcells[]? | select(contains($version) and contains($glob))'
       )
-      echo "blarg3"
 
       if [[ -z "$stemcell" ]]; then
         echo "Downloading stemcell $stemcell_version_reqd"
