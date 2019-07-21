@@ -26,7 +26,7 @@ function upload_stemcells() (
         jq \
           --arg version "$stemcell_version_reqd" \
           --arg glob "$IAAS" \
-        '.stemcells[] //[] | select(contains($version) and contains($glob))'
+        '.stemcells[]? | select(contains($version) and contains($glob))'
       )
       echo "blarg3"
 
