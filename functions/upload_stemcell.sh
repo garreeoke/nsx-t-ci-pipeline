@@ -9,7 +9,6 @@ function upload_stemcells() (
   for stemcell_version_reqd in $stemcell_versions
   do
 
-    echo "V $stemcell_version_reqd"
     if [ -n "$stemcell_version_reqd" ]; then
       echo "blarg1"
       diagnostic_report=$(
@@ -21,14 +20,13 @@ function upload_stemcells() (
           curl --silent --path "/api/v0/diagnostic_report"
       )
       echo $diagnostic_report
-
       echo "blarg2"
       stemcell=$(
         echo $diagnostic_report |
         jq \
           --arg version "$stemcell_version_reqd" \
           --arg glob "$IAAS" \
-        '.stemcells[] | select(contains($version) and contains($glob))'
+        '.stemcells[] //[] | select(contains($version) and contains($glob))'
       )
       echo "blarg3"
 
