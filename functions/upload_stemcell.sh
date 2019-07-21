@@ -9,7 +9,9 @@ function upload_stemcells() (
   for stemcell_version_reqd in $stemcell_versions
   do
 
+    echo "V $stemcell_version_reqd"
     if [ -n "$stemcell_version_reqd" ]; then
+      echo "blarg1"
       diagnostic_report=$(
         om-linux \
           --target https://$OPSMAN_DOMAIN_OR_IP_ADDRESS \
@@ -18,8 +20,9 @@ function upload_stemcells() (
           --skip-ssl-validation \
           curl --silent --path "/api/v0/diagnostic_report"
       )
+      echo $diagnostic_report
 
-      echo "blarg1"
+      echo "blarg2"
       stemcell=$(
         echo $diagnostic_report |
         jq \
@@ -27,7 +30,7 @@ function upload_stemcells() (
           --arg glob "$IAAS" \
         '.stemcells[] | select(contains($version) and contains($glob))'
       )
-      echo "blarg2"
+      echo "blarg3"
 
       if [[ -z "$stemcell" ]]; then
         echo "Downloading stemcell $stemcell_version_reqd"
