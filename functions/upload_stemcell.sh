@@ -5,6 +5,7 @@ function upload_stemcells() (
   set -eu
   local stemcell_os=$1
   local stemcell_versions="$2"
+  local downloaded="no"
 
   for stemcell_version_reqd in $stemcell_versions
   do
@@ -48,8 +49,7 @@ function upload_stemcells() (
         fi
 
         # Find and download correct stemcell
-        local downloaded="no"
-        if [ "$minor_version" != "" && "$major_version" != ""]; then
+        if [[ "$minor_version" != "" && "$major_version" != "" ]]; then
           echo "Looking for newer stemcells versions"
           for min_version in $(seq 100 -1 $minor_version)
             do
