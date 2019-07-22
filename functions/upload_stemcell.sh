@@ -4,12 +4,17 @@ function upload_stemcells() (
 
   set -eu
   local stemcell_os=$1
-  local stemcell_versions="$2"
+  local stemcell_req_version=$2
+  local get_latest=$3
+  
+  if [ $get_latest == "" ]; then
+    $get_latest="true"
+  fi
 
-  for stemcell_version_reqd in $stemcell_versions
-  do
-    echo "Stemcell version: $stemcell_version_reqd"
-    if [ -n "$stemcell_version_reqd" ]; then
+  #for stemcell_version_reqd in $stemcell_versions
+  #do
+  echo "Minimum stemcell version: $stemcell_min_version"
+  if [ -n "$stemcell_req_version" ]; then
       diagnostic_report=$(
         om-linux \
           --target https://$OPSMAN_DOMAIN_OR_IP_ADDRESS \
