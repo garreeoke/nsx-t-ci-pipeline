@@ -57,7 +57,7 @@ function upload_stemcells() (
                pivnet-cli download-product-files -p "$product_slug" -r $major_version.$min_version -g "*${IAAS}*" --accept-eula
                if [[ $? == 0 ]]; then
                 echo "Successfully downloaded stemcell: $stemcell_version_reqd"
-                $downloaded="yes"
+                downloaded="yes"
                 break
                else 
                 echo "$stemcell_version_reqd not found"
@@ -65,7 +65,7 @@ function upload_stemcells() (
             done
         fi
 
-        if [ $dowloaded == "no"]; then
+        if [[ $dowloaded == "no" ]]; then
           echo "Unable to download stemcell: $stemcell_version_reqd"
           exit 1
         fi
