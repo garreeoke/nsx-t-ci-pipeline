@@ -55,7 +55,7 @@ function upload_stemcells() (
             do
                echo "Trying to dowlowding $major_version.$min_version"
                pivnet-cli download-product-files -p "$product_slug" -r $major_version.$min_version -g "*${IAAS}*" --accept-eula
-               if [ $? == 0]; then
+               if [[ $? == 0 ]]; then
                 echo "Successfully downloaded stemcell: $stemcell_version_reqd"
                 $downloaded="yes"
                 break
