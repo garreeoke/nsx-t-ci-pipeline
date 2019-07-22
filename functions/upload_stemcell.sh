@@ -48,8 +48,8 @@ function upload_stemcells() (
         fi
 
         # Find and download correct stemcell
-        downloaded="no"
-        if [ "$minor_version" != "" -a "$major_version" != ""]; then
+        local downloaded="no"
+        if [ "$minor_version" != "" && "$major_version" != ""]; then
           echo "Looking for newer stemcells versions"
           for min_version in $(seq 100 -1 $minor_version)
             do
