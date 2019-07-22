@@ -1,6 +1,6 @@
 ops_dir_config_params: &ops-dir-config-params
-  STEMCELL_OS_FROM_TILE: ((pks_stemcell_os))
-  STEMCELL_VERSION_FROM_TILE: ((pks_stemcell_version))
+  #STEMCELL_OS_FROM_TILE: ((pks_stemcell_os))
+  #STEMCELL_VERSION_FROM_TILE: ((pks_stemcell_version))
   OPSMAN_DOMAIN_OR_IP_ADDRESS: ((opsman_domain_or_ip_address))
   OPSMAN_USERNAME: ((opsman_admin_username))
   OPSMAN_PASSWORD: ((opsman_admin_password))
@@ -367,8 +367,8 @@ jobs:
       OPSMAN_DOMAIN_OR_IP_ADDRESS: ((opsman_domain_or_ip_address))
       OPSMAN_USERNAME: ((opsman_admin_username))
       OPSMAN_PASSWORD: ((opsman_admin_password))
-      STEMCELL_OS_FROM_TILE: ((pks_stemcell_os))
-      STEMCELL_VERSION_FROM_TILE: ((pks_stemcell_version))
+      #STEMCELL_OS_FROM_TILE: ((pks_stemcell_os))
+      #STEMCELL_VERSION_FROM_TILE: ((pks_stemcell_version))
       PIVNET_API_TOKEN: ((pivnet_token))
       OM_IP: ((om_ip))
 

@@ -4,42 +4,27 @@ function upload_stemcells() (
 
   set -eu
   local stemcell_os=$1
-  local stemcell_req_version=$2
-  local get_latest=$3
-  
-  if [ $get_latest == "" ]; then
-    $get_latest="true"
-  fi
+  local stemcell_versions="$2"
 
-  #for stemcell_version_reqd in $stemcell_versions
-  #do
-  echo "Minimum stemcell version: $stemcell_min_version"
-  if [ -n "$stemcell_req_version" ]; then
-      diagnostic_report=$(
-        om-linux \
-          --target https://$OPSMAN_DOMAIN_OR_IP_ADDRESS \
-          --username $OPSMAN_USERNAME \
-          --password $OPSMAN_PASSWORD \
-          --skip-ssl-validation \
-          curl --silent --path "/api/v0/diagnostic_report"
-      )
+  for stemcell_version_reqd in $stemcell_versions
+  do
+    echo "Checking for stemcell version: $stemcell_version_reqd"
+
+    minor_version=$(echo $stemcell_version_reqd | awk -F '.' '{print $2}')
+    major_version=$(echo $stemcell_version_reqd | awk -F '.' '{print $1}')
+
+    if [ -n "$stemcell_version_req" ]; then
+      #diagnostic_report=$(
+      #  om-linux \
+      #    --target https://$OPSMAN_DOMAIN_OR_IP_ADDRESS \
+      #    --username $OPSMAN_USERNAME \
+      #    --password $OPSMAN_PASSWORD \
+      #    --skip-ssl-validation \
+      #    curl --silent --path "/api/v0/diagnostic_report"
+      #)
       
-      echo "Running diag report from OpsMan"
-      echo $diagnostic_report
-
-      # This will be an irrelevant check if user is allowed to specify a version
-      stemcell=$(
-        echo $diagnostic_report |
-        jq \
-          --arg version "$stemcell_version_reqd" \
-          --arg glob "$IAAS" \
-        '.stemcells[]? | select(contains($version) and contains($glob))'
-      )
-      
-      echo "Stemcell: $stemcell"
-
-      if [[ -z "$stemcell" ]]; then
-        echo "Downloading stemcell $stemcell_version_reqd"
+      #if [[ -n "$stemcell" ]]; then
+      #  echo "Downloading stemcell $stemcell_version_reqd"
 
         product_slug=$(
           jq --raw-output \
@@ -53,7 +38,8 @@ function upload_stemcells() (
         )
 
         pivnet-cli login --api-token="$PIVNET_API_TOKEN"
-    set +e
+        set +e
+
         # Override the product_slug for xenial
         if [[ "$stemcell_os" =~ "trusty" ]]; then
           product_slug="stemcells"
@@ -61,24 +47,29 @@ function upload_stemcells() (
           product_slug="stemcells-ubuntu-xenial"
         fi
 
-        pivnet-cli download-product-files -p "$product_slug" -r $stemcell_version_reqd -g "*${IAAS}*" --accept-eula
-        if [ $? != 0 ]; then
-          min_version=$(echo $stemcell_version_reqd | awk -F '.' '{print $2}')
-          major_version=$(echo $stemcell_version_reqd | awk -F '.' '{print $1}')
-          if [ "$min_version" == "" ]; then
-            for min_version in $(seq 100 -1 0)
+        # Find and download correct stemcell
+        downloaded="no"
+        if [ "$minor_version" != "" -a "$major_version" != ""]; then
+          for min_version in $(seq 100 -1 $minor_version)
             do
-               pivnet-cli download-product-files -p "$product_slug" -r $major_version.$min_version -g "*${IAAS}*" --accept-eula && break
+               echo "Trying to dowlowding $major_version.$min_version"
+               pivnet-cli download-product-files -p "$product_slug" -r $major_version.$min_version -g "*${IAAS}*" --accept-eula
+               if [ $? == 0]; then
+                echo "Successfully downloaded stemcell: $stemcell_version_reqd"
+                $downloaded="yes"
+                break
+               fi
             done
-          else
-            echo "No Stemcell version $major_version for "${IAAS}" found !!, giving up"
-            exit 1
-          fi
         fi
-    set -e
 
+        if [ $dowloaded == "no"]; then
+          echo "Unable to download stemcell: $stemcell_version_reqd"
+          exit 1
+        fi
+
+        # Upload file to opsman
+        set -e
         SC_FILE_PATH=`find ./ -name "bosh*.tgz" | sort | tail -1 || true`
-
         if [ ! -f "$SC_FILE_PATH" ]; then
           echo "Stemcell file not found!"
           exit 1
@@ -87,10 +78,7 @@ function upload_stemcells() (
         for stemcell in $SC_FILE_PATH
         do
           om-linux -t https://$OPSMAN_DOMAIN_OR_IP_ADDRESS -u $OPSMAN_USERNAME -p $OPSMAN_PASSWORD -k upload-stemcell -s $stemcell
-        done
-      fi
+        done 
     fi
-
   done
-
 )
