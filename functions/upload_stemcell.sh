@@ -8,7 +8,7 @@ function upload_stemcells() (
 
   for stemcell_version_reqd in $stemcell_versions
   do
-
+    echo "Stemcell version: $stemcell_version_reqd"
     if [ -n "$stemcell_version_reqd" ]; then
       diagnostic_report=$(
         om-linux \
@@ -22,7 +22,7 @@ function upload_stemcells() (
       echo "Running diag report from OpsMan"
       echo $diagnostic_report
 
-      # Made this irrelevant for the time being as diagnostic report is not returning stemcell for pks?
+      # This will be an irrelevant check if user is allowed to specify a version
       stemcell=$(
         echo $diagnostic_report |
         jq \
@@ -31,7 +31,7 @@ function upload_stemcells() (
         '.stemcells[]? | select(contains($version) and contains($glob))'
       )
       
-      echo "Stemcall: $stemcell"
+      echo "Stemcell: $stemcell"
 
       if [[ -z "$stemcell" ]]; then
         echo "Downloading stemcell $stemcell_version_reqd"

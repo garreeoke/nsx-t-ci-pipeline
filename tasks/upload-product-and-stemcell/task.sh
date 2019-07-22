@@ -52,7 +52,7 @@ if [ "$STEMCELL_OS_FROM_TILE" == "" ]; then
 fi
 
 if [ "$STEMCELL_OS_FROM_TILE" == "" -o "$STEMCELL_VERSION_FROM_TILE" == "" ]; then
-  echo "No blah stemcell dependency declared or no version specified in tile, skipping stemcell upload!"
+  echo "No stemcell dependency declared or no version specified in tile, skipping stemcell upload!"
   exit 0
 fi
 
