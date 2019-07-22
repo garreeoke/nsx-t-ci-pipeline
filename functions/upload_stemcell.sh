@@ -65,7 +65,7 @@ function upload_stemcells() (
             done
         fi
 
-        if [[ $dowloaded == "no" ]]; then
+        if [[ $downloaded == "no" ]]; then
           echo "Unable to download stemcell: $stemcell_version_reqd"
           exit 1
         fi
