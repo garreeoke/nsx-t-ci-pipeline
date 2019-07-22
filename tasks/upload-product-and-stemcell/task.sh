@@ -56,5 +56,10 @@ if [ "$STEMCELL_OS_FROM_TILE" == "" -o "$STEMCELL_VERSION_FROM_TILE" == "" ]; th
 fi
 
 source nsx-t-ci-pipeline/functions/upload_stemcell.sh
-echo "No cached stemcell; Will download and then upload stemcell: $STEMCELL_VERSION_FROM_TILE to Ops Mgr"
-upload_stemcells "$STEMCELL_OS_FROM_TILE" "$STEMCELL_VERSION_FROM_TILE $STEMCELL_VERSION_FROM_PRODUCT_METADATA"
+echo "No cached stemcell; Will download and then upload minimum required stemcell: $STEMCELL_VERSION_FROM_TILE"
+
+if [ $STEMCELL_VERSION_FROM_PRODUCT_METADATA == $STEMCELL_VERSION_FROM_TILE ]; then
+  upload_stemcells "$STEMCELL_OS_FROM_TILE" "$STEMCELL_VERSION_FROM_TILE"
+else 
+  upload_stemcells "$STEMCELL_OS_FROM_TILE" "$STEMCELL_VERSION_FROM_TILE $STEMCELL_VERSION_FROM_PRODUCT_METADATA"
+fi
