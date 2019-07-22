@@ -8,12 +8,12 @@ function upload_stemcells() (
 
   for stemcell_version_reqd in $stemcell_versions
   do
-    echo "Checking for stemcell version: $stemcell_version_reqd"
+    echo "Minimum stemcell version: $stemcell_version_reqd"
 
     minor_version=$(echo $stemcell_version_reqd | awk -F '.' '{print $2}')
     major_version=$(echo $stemcell_version_reqd | awk -F '.' '{print $1}')
 
-    if [ -n "$stemcell_version_req" ]; then
+    if [ -n "$stemcell_version_reqd" ]; then
       #diagnostic_report=$(
       #  om-linux \
       #    --target https://$OPSMAN_DOMAIN_OR_IP_ADDRESS \
@@ -50,6 +50,7 @@ function upload_stemcells() (
         # Find and download correct stemcell
         downloaded="no"
         if [ "$minor_version" != "" -a "$major_version" != ""]; then
+          echo "Looking for newer stemcells versions"
           for min_version in $(seq 100 -1 $minor_version)
             do
                echo "Trying to dowlowding $major_version.$min_version"
@@ -58,6 +59,8 @@ function upload_stemcells() (
                 echo "Successfully downloaded stemcell: $stemcell_version_reqd"
                 $downloaded="yes"
                 break
+               else 
+                echo "$stemcell_version_reqd not found"
                fi
             done
         fi

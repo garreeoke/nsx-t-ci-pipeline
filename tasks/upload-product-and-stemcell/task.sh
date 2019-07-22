@@ -44,7 +44,6 @@ if [ -e "./pivnet-product/metadata.json" ]; then
 fi
 
 tile_metadata=$(unzip -l pivnet-product/*.pivotal | grep "metadata" | grep "ml$" | awk '{print $NF}')
-echo "TILE_METADATA: $tile_metadata"
 STEMCELL_VERSION_FROM_TILE=$(unzip -p pivnet-product/*.pivotal $tile_metadata | grep -A5 "stemcell_criteria:"  \
                                   | grep "version:" | grep -Ei "[-+]?[0-9]*\.?[0-9]*" | awk '{print $NF}' | sed "s/'//g;s/\"//g" )
 
