@@ -23,7 +23,7 @@ fi
 STEMCELL_VERSION_FROM_PRODUCT_METADATA=""
 if [ -e "./pivnet-product/metadata.json" ]; then
   echo "Reading metadata.json"
-  METADATA_FROM_FILE=cat ./pivnet-product/metadata.json
+  METADATA_FROM_FILE=$(cat ./pivnet-product/metadata.json)
   echo "$METADATA_FROM_FILE" 
   STEMCELL_VERSION_FROM_PRODUCT_METADATA=$(
     cat ./pivnet-product/metadata.json |
