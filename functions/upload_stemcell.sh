@@ -65,14 +65,14 @@ function upload_stemcells() (
               )
               if [[ -n $already_staged ]]; then
                 echo "$major_version.$newer_version already downloaded ... "
-                $staged=$major_version.$newer_version
+                $staged="$major_version.$newer_version"
                 break
               else 
                 echo "Trying to download $major_version.$newer_version"
                 pivnet-cli download-product-files -p "$product_slug" -r $major_version.$newer_version -g "*${IAAS}*" --accept-eula
                 if [[ $? == 0 ]]; then
                   echo "Successfully downloaded stemcell: $major_version.$newer_version"
-                  $staged=$major_version.$newer_version
+                  $staged="$major_version.$newer_version"
                   break
                 else 
                   echo "$major_version.$newer_version not found"
@@ -83,7 +83,7 @@ function upload_stemcells() (
 
         if [[ $staged == "" ]]; then
           echo "Unable to download stemcell ... mimimum: $stemcell_version_reqd"
-          $failed=$((failed+1))
+          $failed=$(($failed+1))
           break
         else 
           # Upload file to opsman
