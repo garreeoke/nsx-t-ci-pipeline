@@ -65,7 +65,7 @@ function upload_stemcells() (
               if [[ -n $already_staged ]]; then
                 echo "$major_version.$newer_version already downloaded ... "
                 staged=$major_version.$newer_version
-                exit 0
+                
               else 
                 echo "Trying to download $major_version.$newer_version"
                 pivnet-cli download-product-files -p "$product_slug" -r $major_version.$newer_version -g "*${IAAS}*" --accept-eula
@@ -82,21 +82,22 @@ function upload_stemcells() (
 
         if [[ $staged == "" ]]; then
           echo "Unable to download stemcell ... mimimum: $stemcell_version_reqd"
-          exit 1
-        fi
+          break
+        else 
+          # Upload file to opsman
+          set -e
+          SC_FILE_PATH=`find ./ -name "bosh*.tgz" | sort | tail -1 || true`
+          if [ ! -f "$SC_FILE_PATH" ]; then
+            echo "Stemcell file not found!"
+            exit 1
+          fi
 
-        # Upload file to opsman
-        set -e
-        SC_FILE_PATH=`find ./ -name "bosh*.tgz" | sort | tail -1 || true`
-        if [ ! -f "$SC_FILE_PATH" ]; then
-          echo "Stemcell file not found!"
-          exit 1
+          for stemcell in $SC_FILE_PATH
+          do
+            om-linux -t https://$OPSMAN_DOMAIN_OR_IP_ADDRESS -u $OPSMAN_USERNAME -p $OPSMAN_PASSWORD -k upload-stemcell -s $stemcell
+          done 
         fi
-
-        for stemcell in $SC_FILE_PATH
-        do
-          om-linux -t https://$OPSMAN_DOMAIN_OR_IP_ADDRESS -u $OPSMAN_USERNAME -p $OPSMAN_PASSWORD -k upload-stemcell -s $stemcell
-        done 
+        
     fi
   done
 )
