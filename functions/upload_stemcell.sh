@@ -55,6 +55,7 @@ function upload_stemcells() (
           echo "Looking for newer stemcells versions"
           for newer_version in $(seq 100 -1 $minor_version)
             do
+              stagged=""
               # Search to see if newer stemcell already staged
               already_staged=$(
                 echo $diagnostic_report |
@@ -65,6 +66,7 @@ function upload_stemcells() (
               )
               if [[ -n $already_staged ]]; then
                 echo "$major_version.$newer_version already downloaded ... "
+                staged="$major_version.$newer_version"
                 break
               else 
                 echo "Trying to download $major_version.$newer_version"
