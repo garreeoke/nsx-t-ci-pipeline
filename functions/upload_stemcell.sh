@@ -25,6 +25,9 @@ function upload_stemcells() (
           curl --silent --path "/api/v0/diagnostic_report"
       )
 
+      echo "Diag report:"
+      echo " $diagnostic_report"
+
       product_slug=$(
          jq --raw-output \
             '
@@ -57,7 +60,7 @@ function upload_stemcells() (
                 jq \
                 --arg version "$major_version.$newer_version" \
                 --arg glob "$IAAS" \
-                '.[] | .staged[] | .stemcells[] | .filename? | select(contains($version) and contains($glob))'
+                '.[]? | .staged[]? | .stemcells[]? | .filename? | select(contains($version) and contains($glob))'
               )
               if [[ -n $already_staged ]]; then
                 echo "$major_version.$newer_version already downloaded ... "
