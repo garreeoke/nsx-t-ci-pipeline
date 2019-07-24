@@ -6,6 +6,7 @@ function upload_stemcells() (
   local stemcell_os=$1
   local stemcell_versions="$2"
   local staged=""
+  local failed=0
 
   # Loop through all passed in versions
   for stemcell_version_reqd in $stemcell_versions
@@ -65,7 +66,7 @@ function upload_stemcells() (
               if [[ -n $already_staged ]]; then
                 echo "$major_version.$newer_version already downloaded ... "
                 staged=$major_version.$newer_version
-                
+                break
               else 
                 echo "Trying to download $major_version.$newer_version"
                 pivnet-cli download-product-files -p "$product_slug" -r $major_version.$newer_version -g "*${IAAS}*" --accept-eula
@@ -82,6 +83,7 @@ function upload_stemcells() (
 
         if [[ $staged == "" ]]; then
           echo "Unable to download stemcell ... mimimum: $stemcell_version_reqd"
+          let "failed++"
           break
         else 
           # Upload file to opsman
@@ -100,4 +102,7 @@ function upload_stemcells() (
         
     fi
   done
+  if [[ $failed > 0 ]]; then
+    exit 1
+  fi
 )
