@@ -57,7 +57,7 @@ function upload_stemcells() (
                 jq \
                 --arg version "$major_version.$newer_version" \
                 --arg glob "$IAAS" \
-                '.staged[]? | .stemcells[]? | .filename | select(contains($version) and contains($glob))'
+                '.[] | .staged[] | .stemcells[] | .filename? | select(contains($version) and contains($glob))'
               )
               if [[ -n $already_staged ]]; then
                 echo "$major_version.$newer_version already downloaded ... "
