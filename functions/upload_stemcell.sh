@@ -83,7 +83,7 @@ function upload_stemcells() (
 
         if [[ $staged == "" ]]; then
           echo "Unable to download stemcell ... mimimum: $stemcell_version_reqd"
-          let "failed++"
+          failed=$((failed+1))
           break
         else 
           # Upload file to opsman
