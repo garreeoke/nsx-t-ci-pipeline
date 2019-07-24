@@ -65,14 +65,26 @@ function upload_stemcells() (
               )
               if [[ -n $already_staged ]]; then
                 echo "$major_version.$newer_version already downloaded ... "
-                staged="$major_version.$newer_version"
                 break
               else 
                 echo "Trying to download $major_version.$newer_version"
                 pivnet-cli download-product-files -p "$product_slug" -r $major_version.$newer_version -g "*${IAAS}*" --accept-eula
+                # If no errors, go ahead and upload it to opsman
                 if [[ $? == 0 ]]; then
                   echo "Successfully downloaded stemcell: $major_version.$newer_version"
                   staged="$major_version.$newer_version"
+                  # Upload file to opsman
+                  set -e
+                  SC_FILE_PATH=`find ./ -name "bosh*.tgz" | sort | tail -1 || true`
+                  if [ ! -f "$SC_FILE_PATH" ]; then
+                    echo "Stemcell file not found!"
+                    exit 1
+                  fi
+
+                  for stemcell in $SC_FILE_PATH
+                  do
+                  om-linux -t https://$OPSMAN_DOMAIN_OR_IP_ADDRESS -u $OPSMAN_USERNAME -p $OPSMAN_PASSWORD -k upload-stemcell -s $stemcell
+                  done 
                   break
                 else 
                   echo "$major_version.$newer_version not found"
@@ -81,23 +93,10 @@ function upload_stemcells() (
             done
         fi
 
+        # Check if failed
         if [[ $staged == "" ]]; then
           echo "Unable to download stemcell ... mimimum: $stemcell_version_reqd"
-          failed=$((failed+1))
-          break
-        else 
-          # Upload file to opsman
-          set -e
-          SC_FILE_PATH=`find ./ -name "bosh*.tgz" | sort | tail -1 || true`
-          if [ ! -f "$SC_FILE_PATH" ]; then
-            echo "Stemcell file not found!"
-            exit 1
-          fi
-
-          for stemcell in $SC_FILE_PATH
-          do
-            om-linux -t https://$OPSMAN_DOMAIN_OR_IP_ADDRESS -u $OPSMAN_USERNAME -p $OPSMAN_PASSWORD -k upload-stemcell -s $stemcell
-          done 
+          failed=$((failed+1))      
         fi
         
     fi
