@@ -57,14 +57,14 @@ function upload_stemcells() (
                 jq \
                 --arg version "$major_version.$newer_version" \
                 --arg glob "$IAAS" \
-                '.staged[] | .stemcells[] | .filename | select(contains($version) and contains($glob))'
+                '.staged[]? | .stemcells[]? | .filename | select(contains($version) and contains($glob))'
               )
               if [[ -n $already_staged ]]; then
                 echo "$major_version.$newer_version already downloaded ... "
                 staged=$major_version.$newer_version
                 break
               else 
-                echo "Trying to dowlowding $major_version.$newer_version"
+                echo "Trying to download $major_version.$newer_version"
                 pivnet-cli download-product-files -p "$product_slug" -r $major_version.$newer_version -g "*${IAAS}*" --accept-eula
                 if [[ $? == 0 ]]; then
                   echo "Successfully downloaded stemcell: $major_version.$newer_version"
